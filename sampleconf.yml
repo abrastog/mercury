@@ -1,0 +1,36 @@
+#kbridge.yml
+ProgramLog:
+  LogFile: /home/kbridge/logs/kbridge.log
+  LogLimitInMB: 10
+
+DataManagement:
+  DataPath: /home/kbridge/data/
+  OMSPath : /home/kbridge/oms/
+  InstrumentCache : /home/kbridge/instruments.cache
+  StorageLimitInGB : 12
+  StoragePurgeHour: 20:00
+  PublishSocket: tcp://localhost:6000
+
+  
+Ticker:
+  Enable: true
+  NseIndices : ["INDIA VIX", "NIFTY 50", "NIFTY BANK"]
+  NseSymbols: ["BHARTIARTL", "COALINDIA", "HDFC", "HDFCBANK", "HINDUNILVR", "ICICIBANK", "INFY", "ITC", "RELIANCE", "SBIN", "TCS"]
+
+KiteConnect:
+  Enable: true
+  Key: kiteapikey
+  Secret: kiteapisecretcode
+  HTTPSPort: 443
+  CertificateFile: /etc/letsencrypt/live/mydomain.trade/fullchain.pem
+  KeyFile: /etc/letsencrypt/live/mydomain.trade/privkey.pem
+  TokenRedirectPath : /tokenRedirect
+  PostbackPath : /eventPostback
+  TimeToReconnect: 08:50
+  MarketEndTime: 15:30
+  MarketBeginTime: 09:15
+
+KiteConnectAutoLogin:
+  ClientID : AB1234
+  Password: password@123
+  PIN: 101010
