@@ -75,7 +75,7 @@ func purgeOldData() {
 
 func hasGonePast(t string) bool {
 	tn := time.Now().Local()
-	lt := tn.Format("22:08:41")
+	lt := tn.Format("15:04:05")
 	return (lt > t)
 }
 

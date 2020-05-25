@@ -60,8 +60,11 @@ func onConnect() {
 
 // Triggered when tick is recevived
 func onTick(tick kiteticker.Tick) {
-	if len(tickChannel) < cap(tickChannel) {
-		tickChannel <- tick
+	// Process only ticks with good timestamp
+	if tick.Timestamp.Time.Year() > 2019 {
+		if len(tickChannel) < cap(tickChannel) {
+			tickChannel <- tick
+		}
 	}
 }
 

@@ -38,7 +38,7 @@ func tokenHandler(w http.ResponseWriter, r *http.Request) {
 	if params["status"][0] == "success" {
 		reqToken := params["request_token"][0]
 		log.Println("Token : ", reqToken)
-		restartKiteSession(reqToken)
+		go restartKiteSession(reqToken)
 	} else {
 		log.Println("Failed to read request token")
 	}
@@ -62,16 +62,21 @@ func hookHandler(w http.ResponseWriter, r *http.Request) {
 
 func setupKiteCallbacks() {
 	if AppConfig.KiteConnect.HTTPSPort <= 0 {
-
+		log.Panicf("Need https port for setting up kite connection")
+		return
 	}
 	http.HandleFunc("/", defHandler)
 	http.HandleFunc(AppConfig.KiteConnect.TokenRedirectPath, tokenHandler)
 	http.HandleFunc(AppConfig.KiteConnect.PostbackPath, hookHandler)
-	addr := ":" + strconv.Itoa(AppConfig.KiteConnect.HTTPSPort)
+	go launchRunWebserver(":" + strconv.Itoa(AppConfig.KiteConnect.HTTPSPort))
+}
+
+func launchRunWebserver(addr string) {
 	err := http.ListenAndServeTLS(addr, AppConfig.KiteConnect.CertificateFile, AppConfig.KiteConnect.KeyFile, nil)
 	if err != nil {
 		log.Printf("http.ListenAndServeTLS Failed. %+v", err)
 	}
+
 }
 
 func authenticateKiteConnection(loginurl string) error {
@@ -88,7 +93,7 @@ func isConnectionTime() bool {
 		return false
 	}
 
-	tm := time.Now().Local().Format("22:08")
+	tm := time.Now().Local().Format("15:04")
 	if tm < AppConfig.KiteConnect.TimeToReconnect {
 		return false
 	}
@@ -128,6 +133,9 @@ func manageKiteConnection() {
 			log.Printf("Kite auth error. %+v", err)
 			time.Sleep(5 * time.Minute)
 			continue
+		} else {
+			//Wait for 10 seconds for to get access token
+			time.Sleep(10 * time.Second)
 		}
 
 		waitForDisconnection()

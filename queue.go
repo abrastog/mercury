@@ -31,8 +31,10 @@ func (q *tickQueue) put(t kiteticker.Tick) {
 }
 
 func (q *tickQueue) processAllTicks() {
-	publish(q.q, q.len)
-	q.len = 0
+	if q.len > 0 {
+		publishTicks(q.q, q.len)
+		q.len = 0
+	}
 }
 
 func newTickQueue(capacity int) *tickQueue {
@@ -56,7 +58,7 @@ func setupTickHandler() {
 
 func handleKiteTicks() {
 	const bufferSize = 100
-	const bufferTime = 250
+	const bufferTime = 100
 
 	q := newTickQueue(bufferSize)
 
@@ -113,11 +115,13 @@ func buildTick(k *kiteticker.Tick) kstreamdb.TickData {
 	return t
 }
 
-func publish(ticks []kiteticker.Tick, n int) {
-	kticks := make([]kstreamdb.TickData, n)
-	for i := 0; i < n; i++ {
-		kticks[i] = buildTick(&ticks[i])
-	}
+func publishTicks(ticks []kiteticker.Tick, n int) {
+	if n > 0 {
+		kticks := make([]kstreamdb.TickData, n)
+		for i := 0; i < n; i++ {
+			kticks[i] = buildTick(&ticks[i])
+		}
 
-	ksocket.Publish(kticks)
+		ksocket.Publish(kticks)
+	}
 }
