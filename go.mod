@@ -10,7 +10,7 @@ require (
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/sivamgr/gokitelogin v0.0.0-20200525064528-0b8892fd7667
-	github.com/sivamgr/kstreamdb v0.0.0-20200526193812-4f1d3f636857
+	github.com/sivamgr/kstreamdb v0.0.0-20200526202801-dfe38b975fdc
 	github.com/zerodhatech/gokiteconnect v0.0.0-20200331064834-5f92e864864b
 	golang.org/x/net v0.0.0-20200520182314-0ba52f642ac2 // indirect
 	golang.org/x/sys v0.0.0-20200523222454-059865788121 // indirect

@@ -49,6 +49,8 @@ github.com/sivamgr/gokitelogin v0.0.0-20200525064528-0b8892fd7667 h1:spyBXAfHvJR
 github.com/sivamgr/gokitelogin v0.0.0-20200525064528-0b8892fd7667/go.mod h1:wJ64MvLfcoClHLlrcJx9wLoQXsBl8s00eISy/km+5F4=
 github.com/sivamgr/kstreamdb v0.0.0-20200526193812-4f1d3f636857 h1:CLFZvfaCqCERbb0G6xnpX9VAnpxF7M/L6SWvmYB6lU0=
 github.com/sivamgr/kstreamdb v0.0.0-20200526193812-4f1d3f636857/go.mod h1:Gp9POhelSjIK3zy1a+qahwEQR7VY6FnoFwHUsbyu6/A=
+github.com/sivamgr/kstreamdb v0.0.0-20200526202801-dfe38b975fdc h1:6Pmn9zRsi9A1R9BwT4lpvPHagF7ldj5jw1I/Yn3JcZ4=
+github.com/sivamgr/kstreamdb v0.0.0-20200526202801-dfe38b975fdc/go.mod h1:Gp9POhelSjIK3zy1a+qahwEQR7VY6FnoFwHUsbyu6/A=
 github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
 github.com/vmihailenco/msgpack/v4 v4.3.11 h1:Q47CePddpNGNhk4GCnAx9DDtASi2rasatE0cd26cZoE=
