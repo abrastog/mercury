@@ -1,7 +1,7 @@
 package main
 
 import (
-	"time"
+	"log"
 
 	"github.com/sivamgr/kstreamdb"
 	kiteticker "github.com/zerodhatech/gokiteconnect/ticker"
@@ -9,39 +9,6 @@ import (
 
 var tickChannel chan kiteticker.Tick
 var ksocket kstreamdb.Socket
-
-type tickQueue struct {
-	q        []kiteticker.Tick
-	len      int
-	capacity int
-}
-
-func (q *tickQueue) init(capacity int) {
-	q.q = make([]kiteticker.Tick, capacity)
-	q.capacity = capacity
-	q.len = 0
-}
-
-func (q *tickQueue) put(t kiteticker.Tick) {
-	q.q[q.len] = t
-	q.len++
-	if q.len >= q.capacity {
-		q.processAllTicks()
-	}
-}
-
-func (q *tickQueue) processAllTicks() {
-	if q.len > 0 {
-		publishTicks(q.q, q.len)
-		q.len = 0
-	}
-}
-
-func newTickQueue(capacity int) *tickQueue {
-	q := new(tickQueue)
-	q.init(capacity)
-	return q
-}
 
 func setupTickHandler() {
 	const channelCapacity = 256
@@ -51,26 +18,20 @@ func setupTickHandler() {
 	if e == nil {
 		db.RecordStream(&ksocket)
 	}
-
 	go handleKiteTicks()
-
 }
 
 func handleKiteTicks() {
-	const bufferSize = 100
-	const bufferTime = 100
-
-	q := newTickQueue(bufferSize)
-
 	for {
-		select {
-		case t := <-tickChannel:
-			q.put(t)
-		case <-time.After(bufferTime * time.Millisecond):
-			q.processAllTicks()
+		if msg, ok := <-tickChannel; ok {
+			tick := buildTick(&msg)
+			ksocket.Publish(tick)
+		} else {
+			log.Println("Channel error with handleKiteTicks")
+			break
 		}
-
 	}
+
 }
 
 func buildDepth(d [5]kiteticker.DepthItem) [5]kstreamdb.DepthItem {
@@ -113,15 +74,4 @@ func buildTick(k *kiteticker.Tick) kstreamdb.TickData {
 		Ask: buildDepth(k.Depth.Sell),
 	}
 	return t
-}
-
-func publishTicks(ticks []kiteticker.Tick, n int) {
-	if n > 0 {
-		kticks := make([]kstreamdb.TickData, n)
-		for i := 0; i < n; i++ {
-			kticks[i] = buildTick(&ticks[i])
-		}
-
-		ksocket.Publish(kticks)
-	}
 }
