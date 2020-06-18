@@ -59,8 +59,8 @@ github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:
 github.com/sirupsen/logrus v1.4.1/go.mod h1:ni0Sbl8bgC9z8RoU9G6nDWqqs/fq4eDPysMBDgk/93Q=
 github.com/sivamgr/gokitelogin v0.0.0-20200525064528-0b8892fd7667 h1:spyBXAfHvJRgFV3QjEH/InGFzWxwLpu2V0ii6ZuWJWI=
 github.com/sivamgr/gokitelogin v0.0.0-20200525064528-0b8892fd7667/go.mod h1:wJ64MvLfcoClHLlrcJx9wLoQXsBl8s00eISy/km+5F4=
-github.com/sivamgr/kstreamdb v0.0.0-20200615140151-95b888851467 h1:zQNMjAze2Jm96plx11fzkxVW/Ydn+Q8KNhBa5i2u6IA=
-github.com/sivamgr/kstreamdb v0.0.0-20200615140151-95b888851467/go.mod h1:Gp9POhelSjIK3zy1a+qahwEQR7VY6FnoFwHUsbyu6/A=
+github.com/sivamgr/kstreamdb v0.0.0-20200618123120-079a0a440967 h1:6nUdS5A/1GtQhHTLxPhliIc7MZBOiHNSQ3pvg0sM9qE=
+github.com/sivamgr/kstreamdb v0.0.0-20200618123120-079a0a440967/go.mod h1:Gp9POhelSjIK3zy1a+qahwEQR7VY6FnoFwHUsbyu6/A=
 github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
 github.com/vmihailenco/msgpack/v4 v4.3.11 h1:Q47CePddpNGNhk4GCnAx9DDtASi2rasatE0cd26cZoE=
@@ -99,8 +99,8 @@ golang.org/x/sys v0.0.0-20190507160741-ecd444e8653b/go.mod h1:h1NjWce9XRLGQEsW7w
 golang.org/x/sys v0.0.0-20191005200804-aed5e4c7ecf9 h1:L2auWcuQIvxz9xSEqzESnV/QN/gNRXNApHi3fYwl2w0=
 golang.org/x/sys v0.0.0-20191005200804-aed5e4c7ecf9/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-golang.org/x/sys v0.0.0-20200610111108-226ff32320da h1:bGb80FudwxpeucJUjPYJXuJ8Hk91vNtfvrymzwiei38=
-golang.org/x/sys v0.0.0-20200610111108-226ff32320da/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20200615200032-f1bc736245b1 h1:ogLJMz+qpzav7lGMh10LMvAkM/fAoGlaiiHYiFYdm80=
+golang.org/x/sys v0.0.0-20200615200032-f1bc736245b1/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=
 golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
