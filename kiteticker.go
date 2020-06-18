@@ -27,6 +27,24 @@ func startKiteTicker(accessToken string) {
 	go ticker.Serve()
 }
 
+func isMarketHour() bool {
+	wd := time.Now().Local().Weekday()
+	if (wd == time.Sunday) || (wd == time.Saturday) {
+		return false
+	}
+
+	tm := time.Now().Local().Format("15:04")
+	if tm < AppConfig.KiteConnect.MarketBeginTime {
+		return false
+	}
+
+	if tm > AppConfig.KiteConnect.MarketEndTime {
+		return false
+	}
+
+	return true
+}
+
 // Triggered when any error is raised
 func onError(err error) {
 	log.Println("kiteticker Error: ", err)
@@ -61,7 +79,7 @@ func onConnect() {
 // Triggered when tick is recevived
 func onTick(tick kiteticker.Tick) {
 	// Process only ticks with good timestamp
-	if isConnectionTime() && (tick.Timestamp.Time.Year() > 2019) {
+	if isMarketHour() && (tick.Timestamp.Time.Year() > 2019) {
 		if len(tickChannel) < cap(tickChannel) {
 			tickChannel <- tick
 		}
