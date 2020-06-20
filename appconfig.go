@@ -33,6 +33,11 @@ type AppConfiguration struct {
 		NseSymbols []string `yaml:"NseSymbols"`
 	} `yaml:"Ticker"`
 
+	TickerNseFutures struct {
+		Enable     bool     `yaml:"Enable"`
+		NseSymbols []string `yaml:"NseSymbols"`
+	} `yaml:"TickerNseFutures"`
+
 	TickerNiftyWeeklyOptions struct {
 		Enable          bool `yaml:"Enable"`
 		LimitITMStrikes int  `yaml:"LimitITMStrikes"`

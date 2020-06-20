@@ -3,6 +3,7 @@ package main
 import (
 	"io/ioutil"
 	"log"
+	"math"
 	"net/http"
 	"os"
 	"path"
@@ -17,6 +18,12 @@ var kiteClient *kiteconnect.Client = nil
 var mapTokenToSymbol map[uint32]string
 var mapSymbolToToken map[string]uint32
 var mapSymbolInfo map[string]kiteconnect.Instrument
+var mapFutureContractDaysToExpire map[string]int
+var mapFutureContractToken map[string]uint32
+
+func daysToExpire(e time.Time) int {
+	return int(math.Ceil((e.Sub(time.Now()).Hours() + 20.5) / 24))
+}
 
 func setupKiteConnection() {
 	if !AppConfig.KiteConnect.Enable {
@@ -216,12 +223,27 @@ func buildSymbolTokenMaps(cache string) {
 	mapTokenToSymbol = make(map[uint32]string)
 	mapSymbolToToken = make(map[string]uint32)
 	mapSymbolInfo = make(map[string]kiteconnect.Instrument)
+	mapFutureContractDaysToExpire = make(map[string]int)
+	mapFutureContractToken = make(map[string]uint32)
 
 	for _, sym := range *kInstruments {
 		symKey := sym.Tradingsymbol + "@" + sym.Segment + "@" + sym.Exchange
 		mapSymbolInfo[symKey] = sym
 		mapTokenToSymbol[uint32(sym.InstrumentToken)] = sym.Tradingsymbol
 		mapSymbolToToken[sym.Tradingsymbol] = uint32(sym.InstrumentToken)
+
+		if (sym.Exchange == "NFO") && (sym.InstrumentType == "FUT") {
+			dte := daysToExpire(sym.Expiry.Time)
+			if dte > 0 {
+				if _, ok := mapFutureContractDaysToExpire[sym.Name]; !ok {
+					mapFutureContractDaysToExpire[sym.Name] = dte
+					mapFutureContractToken[sym.Name] = uint32(sym.InstrumentToken)
+				} else if mapFutureContractDaysToExpire[sym.Name] > dte {
+					mapFutureContractDaysToExpire[sym.Name] = dte
+					mapFutureContractToken[sym.Name] = uint32(sym.InstrumentToken)
+				}
+			}
+		}
 	}
 }
 

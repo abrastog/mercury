@@ -102,6 +102,13 @@ func subscribeStaticSymbols() {
 			tokensToSubscribe = append(tokensToSubscribe, uint32(inst.InstrumentToken))
 		}
 	}
+
+	for _, sym := range AppConfig.TickerNseFutures.NseSymbols {
+		if tok, ok := mapFutureContractToken[sym]; ok {
+			tokensToSubscribe = append(tokensToSubscribe, tok)
+		}
+	}
+
 	err := ticker.Subscribe(tokensToSubscribe)
 	if err != nil {
 		log.Println("err: ", err)
