@@ -67,6 +67,7 @@ func purgeDirBySize(dpath string, size int64) {
 }
 
 func purgeOldData() {
+	db.Compress()
 	sizeOverLimit := dirSize(db.DataPath) - int64(AppConfig.DataManagement.StorageLimitInGB)*int64(1024*1024*1024)
 	if sizeOverLimit > 0 {
 		purgeDirBySize(db.DataPath, sizeOverLimit)
