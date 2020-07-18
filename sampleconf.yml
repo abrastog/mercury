@@ -1,12 +1,12 @@
 #kbridge.yml
 ProgramLog:
-  LogFile: /home/kbridge/logs/kbridge.log
+  LogFile: /kbridge/logs/kbridge.log
   LogLimitInMB: 10
 
 DataManagement:
-  DataPath: /home/kbridge/data/
-  OMSPath : /home/kbridge/oms/
-  InstrumentCache : /home/kbridge/instruments.cache
+  DataPath: /kbridge/data/
+  OMSPath : /kbridge/oms/
+  InstrumentCache : /kbridge/instruments.cache
   StorageLimitInGB : 12
   StoragePurgeHour: 20:00
   PublishSocket: tcp://localhost:6000
@@ -22,8 +22,8 @@ KiteConnect:
   Key: kiteapikey
   Secret: kiteapisecretcode
   HTTPSPort: 443
-  CertificateFile: /etc/letsencrypt/live/mydomain.trade/fullchain.pem
-  KeyFile: /etc/letsencrypt/live/mydomain.trade/privkey.pem
+  CertificateFile: /kbridge/source/fullchain.pem
+  KeyFile: /kbridge/source/privkey.pem
   TokenRedirectPath : /tokenRedirect
   PostbackPath : /eventPostback
   TimeToReconnect: 08:50
@@ -31,6 +31,6 @@ KiteConnect:
   MarketBeginTime: 09:15
 
 KiteConnectAutoLogin:
-  ClientID : AB1234
-  Password: password@123
-  PIN: 101010
+  ClientID : AcctClientID
+  Password: Password
+  PIN: 101010YourPIN
