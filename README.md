@@ -14,3 +14,12 @@ modify/rename sampleconf.yml as needed.
 ```
 C:\source\repo\kbridge>kbridge.exe -conf=c:\source\repo\kbridge\sampleconf.yml
 ```
+
+# docker
+
+Edit the sampleconf.xml with proper configuration before running the docker build
+
+```
+docker build -t kbridge .
+docker run -it kbridge
+```
