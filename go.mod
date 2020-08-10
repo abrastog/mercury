@@ -1,4 +1,4 @@
-module github.com/sivamgr/kbridge
+module github.com/sivamgr/mercury
 
 go 1.14
 

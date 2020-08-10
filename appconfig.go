@@ -117,7 +117,7 @@ func parseApplicatioConfigFile(configPath string) error {
 
 func loadAppConfiguration() error {
 	var configFilePath string
-	flag.StringVar(&configFilePath, "conf", "~/.kbridge/kbridge.yml", "a string")
+	flag.StringVar(&configFilePath, "conf", "~/.mercury/mercury.yml", "a string")
 	flag.Parse()
 	err := validateConfigPath(configFilePath)
 

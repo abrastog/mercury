@@ -1,12 +1,12 @@
-#kbridge.yml
+#mercury.yml
 ProgramLog:
-  LogFile: /kbridge/logs/kbridge.log
+  LogFile: /mercury/logs/mercury.log
   LogLimitInMB: 10
 
 DataManagement:
-  DataPath: /kbridge/data/
-  OMSPath : /kbridge/oms/
-  InstrumentCache : /kbridge/instruments.cache
+  DataPath: /mercury/data/
+  OMSPath : /mercury/oms/
+  InstrumentCache : /mercury/instruments.cache
   StorageLimitInGB : 12
   StoragePurgeHour: 20:00
   PublishSocket: tcp://localhost:6000
@@ -22,8 +22,8 @@ KiteConnect:
   Key: kiteapikey
   Secret: kiteapisecretcode
   HTTPSPort: 443
-  CertificateFile: /kbridge/source/fullchain.pem
-  KeyFile: /kbridge/source/privkey.pem
+  CertificateFile: /mercury/source/fullchain.pem
+  KeyFile: /mercury/source/privkey.pem
   TokenRedirectPath : /tokenRedirect
   PostbackPath : /eventPostback
   TimeToReconnect: 08:50

@@ -2,6 +2,7 @@ package main
 
 import (
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 	"time"
@@ -85,6 +86,7 @@ func doPurge() {
 	for {
 		<-ticker.C
 		if hasGonePast(AppConfig.DataManagement.StoragePurgeTime) {
+			log.Printf("Data Purge now :%s configured time :%s", AppConfig.DataManagement.StoragePurgeTime, time.Now().Local().Format("15:04:05"))
 			purgeOldData()
 		}
 	}
